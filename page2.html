@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendations Based on Weather</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <h1>Crop Recommendations Based on Local Weather</h1>
+    <form id="cropForm">
+        <label for="weather">Choose the weather condition:</label>
+        <select id="weather" name="weather">
+            <option value="sunny">Sunny</option>
+            <option value="rainy">Rainy</option>
+            <option value="humid">Humid</option>
+        </select>
+
+        <label for="soilType">Choose the best soil type:</label>
+        <select id="soilType" name="soilType">
+            <option value="loamy">Loamy</option>
+            <option value="clayey">Clayey</option>
+        </select>
+
+        <label for="irrigation">Irrigation availability:</label>
+        <select id="irrigation" name="irrigation">
+            <option value="high">High</option>
+            <option value="low">Low</option>
+        </select>
+
+        <button type="submit">Get recommendation</button> <!-- Changed to type="submit" -->
+    </form>
+    <p id="result"></p>
+
+    <div class="image-container">
+        <img src="/logo/img5.png" alt="Crop Image 5" width="300" height="300">
+        <img src="/logo/img6.png" alt="Crop Image 6" width="300" height="300">
+        <img src="/logo/img7.png" alt="Crop Image 7" width="300" height="300">
+        <img src="/logo/img8.png" alt="Crop Image 8" width="300" height="300">
+        <img src="/logo/img3.png" alt="Crop Image 3" width="300" height="300">
+    </div>
+
+    <!-- JavaScript Code -->
+    <script>
+        document.getElementById('cropForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Get the selected values from the form
+            const weather = document.getElementById('weather').value;
+            const soilType = document.getElementById('soilType').value;
+            const irrigation = document.getElementById('irrigation').value;
+
+            let page = 'default.html'; // Default page for unmatched conditions
+
+            // Determine the correct page based on conditions
+            if (weather === 'sunny' && soilType === 'loamy' && irrigation === 'high') {
+                page = 'page5.html'; // Sunny, Loamy, High irrigation
+            } else if (weather === 'rainy' && soilType === 'clayey' && irrigation === 'low') {
+                page = 'page9.html'; // Rainy, Clayey, Low irrigation
+            } else if (weather === 'humid' && soilType === 'loamy' && irrigation === 'high') {
+                page = 'page7.html'; // Humid, Loamy, High irrigation
+            } else if (weather === 'sunny' && soilType === 'clayey' && irrigation === 'low') {
+                page = 'page8.html'; // Sunny, Clayey, Low irrigation
+            } else if (weather === 'sunny' && soilType === 'clayey' && irrigation === 'high') {
+                page = 'page11.html'; // Sunny, Clayey, High irrigation
+            } else if (weather === 'sunny' && soilType === 'loamy' && irrigation === 'low') {
+                page = 'page12.html'; // Sunny, Loamy, Low irrigation
+            } else if (weather === 'rainy' && soilType === 'loamy' && irrigation === 'low') {
+                page = 'page14.html'; // Rainy, Loamy, Low irrigation
+            } else if (weather === 'rainy' && soilType === 'loamy' && irrigation === 'high') {
+                page = 'page6.html'; // Rainy, Loamy, High irrigation
+            } else if (weather === 'rainy' && soilType === 'clayey' && irrigation === 'high') {
+                page = 'page13.html'; // Rainy, Clayey, High irrigation
+            } else if (weather === 'humid' && soilType === 'loamy' && irrigation === 'low') {
+                page = 'page16.html'; // Humid, Loamy, Low irrigation
+            } else if (weather === 'humid' && soilType === 'clayey' && irrigation === 'low') {
+                page = 'page10.html'; // Humid, Clayey, Low irrigation
+            } else if (weather === 'humid' && soilType === 'clayey' && irrigation === 'high') {
+                page = 'page15.html'; // Humid, Clayey, High irrigation
+            }
+
+            // Redirect to the selected page
+            window.location.href = page;
+        });
+    </script>
+</body>
+</html>

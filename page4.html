@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecasting & Crop Protection Chatbot</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Page Background - Beautiful Climate Image */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.w3schools.com/w3images/mountains.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+        }
+
+        /* Main container styles */
+        .main-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Heading styles */
+        h1 {
+            font-size: 36px;
+            color: #090a09;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Chat container styles */
+        .chat-container {
+            width: 400px;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        }
+
+        /* Chat box styles */
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Input box styles */
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* User message styling */
+        .user-message {
+            text-align: right;
+            color: #2196F3;
+            font-weight: bold;
+        }
+
+        /* Bot message styling */
+        .bot-message {
+            color: #060906;
+            font-weight: bold;
+        }
+
+        /* Scrollbar styling */
+        .chat-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <h1>Weather Forecasting & Crop Protection Chatbot</h1>
+    <h2>Ask me about weather forecasting and saving crops from heavy rains!</h2>
+
+    <!-- Chat container -->
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+        <input type="text" class="input-box" id="userInput" placeholder="Ask me about weather forecasting or saving crops from rains..." onkeydown="if(event.key === 'Enter'){sendMessage();}">
+    </div>
+</div>
+
+<script>
+    // Function to get a response from the bot
+    function getBotResponse(userInput) {
+        const lowerInput = userInput.toLowerCase();
+
+        // Weather forecasting and crop protection responses
+        if (lowerInput.includes("weather forecasting")) {
+            return "Weather forecasting helps farmers predict rain, temperature, and sunlight patterns, which are crucial for planning planting and harvest times. With accurate forecasting, farmers can avoid crop losses due to unexpected weather changes.";
+        } else if (lowerInput.includes("heavy rains")) {
+            return "Heavy rains can damage crops by flooding fields and causing soil erosion. To protect crops, consider planting flood-resistant varieties, using raised beds, and improving field drainage.";
+        } else if (lowerInput.includes("crop protection")) {
+            return "Crop protection from heavy rains involves several strategies, including using tarps for protection, improving soil drainage, and selecting crops that can withstand wet conditions, such as rice or certain bean varieties.";
+        } else if (lowerInput.includes("rain damage prevention")) {
+            return "To prevent rain damage, improve soil drainage, avoid over-watering, and plant rain-resistant crops. Mulching can also help reduce soil erosion during heavy rains.";
+        } else if (lowerInput.includes("soil erosion")) {
+            return "Soil erosion caused by heavy rains can be minimized by planting cover crops, using contour farming, and constructing terraces to slow down water flow.";
+        } else if (lowerInput.includes("flooding prevention")) {
+            return "Flooding prevention methods include creating proper drainage systems, avoiding tilling during the rainy season, and planting flood-resistant crop varieties.";
+        } else if (lowerInput.includes("rain resistant crops")) {
+            return "Crops that are more resistant to heavy rains include rice, certain types of maize, millet, and beans. These crops can tolerate excess water and still grow successfully.";
+        } else if (lowerInput.includes("crop rotation")) {
+            return "Crop rotation helps to improve soil structure and reduce risks of pests and diseases, especially during heavy rains. Alternating crops that thrive in different conditions can also help balance soil moisture levels.";
+        } else {
+            return "I'm sorry, I didn't understand that. Can you ask me about weather forecasting, heavy rains, or crop protection?";
+        }
+    }
+
+    // Function to send and display messages in the chat
+    function sendMessage() {
+        const userInput = document.getElementById("userInput").value;
+        if (userInput.trim() === "") return;
+
+        // Display user message
+        const chatBox = document.getElementById("chatBox");
+        chatBox.innerHTML += `<div class="user-message">${userInput}</div>`;
+
+        // Clear the input box
+        document.getElementById("userInput").value = "";
+
+        // Get bot response
+        const botResponse = getBotResponse(userInput);
+
+        // Display bot response
+        chatBox.innerHTML += `<div class="bot-message">${botResponse}</div>`;
+
+        // Scroll to the bottom of the chat
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
